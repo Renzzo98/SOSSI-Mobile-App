@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:sossi_app/screens/dashboardScreen.dart';
+import 'package:sossi_app/screens/homeScreen.dart';
+import 'package:sossi_app/screens/loginOrganizerScreen.dart';
+import 'package:sossi_app/screens/loginScreen.dart';
+import 'package:sossi_app/screens/oldLoginScreen.dart';
+import 'package:sossi_app/screens/registerationScreen.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+const appTitle = "Let's Play ATL";
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,21 +19,155 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: appTitle,
+      initialRoute: '/',
+      routes: {
+        '/register': (context) => const RegistrationScreen(),
+        '/login': (context) => const OldLoginScreen(),
+        '/events': (context) => const RegistrationScreen(),
+        '/eventDetails': (context) => const RegistrationScreen(),
+        '/main': (context) => const HomeScreen(),
+        '/createEvent': (context) => const RegistrationScreen(),
+        '/editEvent': (context) => const RegistrationScreen(),
+        '/loginOrganizer': (context) => const LoginOrganizerScreen(),
+      },
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primaryColor: Colors.green,
+          colorScheme:
+              ColorScheme.fromSwatch().copyWith(secondary: Colors.amber)),
+      home: const MyHomePage(title: appTitle),
     );
+  }
+}
+
+class LoginSignup extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Expanded(
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+          Stack(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.fromLTRB(15.0, 30.0, 0.0, 0.0),
+                decoration: new BoxDecoration(color: Colors.lightGreen[100]),
+                child: const Text(
+                  "WELCOME TO LET'S PLAY ATL",
+                  style: TextStyle(fontSize: 45.0, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(50.0, 50.0, 0.0, 0.0),
+              )
+            ],
+          ),
+          Expanded(
+              child: Padding(
+                  padding: EdgeInsets.only(top: 0.0, left: 20.0, right: 20.0),
+                  child: ListView(
+                    children: <Widget>[
+                      const SizedBox(height: 60.0),
+                      SizedBox(
+                          height: 60.0,
+                          child: Material(
+                            borderRadius: BorderRadius.circular(20.0),
+                            shadowColor: Colors.greenAccent,
+                            color: Colors.green,
+                            elevation: 7.0,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/login');
+                              },
+                              child: const Center(
+                                child: Text(
+                                  'LOG IN AS A CITIZEN',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Montserrat'),
+                                ),
+                              ),
+                            ),
+                          )),
+                      const SizedBox(height: 60.0),
+                      SizedBox(
+                          height: 60.0,
+                          child: Material(
+                            borderRadius: BorderRadius.circular(20.0),
+                            shadowColor: Colors.greenAccent,
+                            color: Colors.green,
+                            elevation: 7.0,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushNamed('/loginOrganizer');
+                              },
+                              child: const Center(
+                                child: Text(
+                                  'LOG IN AS AN ORGANIZER',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Montserrat'),
+                                ),
+                              ),
+                            ),
+                          )),
+                      const SizedBox(height: 60.0),
+                      SizedBox(
+                        height: 60.0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.grey,
+                                    blurRadius: 40.0,
+                                    spreadRadius: .5)
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20.0)),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('/register');
+                            },
+                            child: const Center(
+                              child: Text('SIGN UP',
+                                  style: TextStyle(
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Montserrat')),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ))),
+        ]));
+  }
+}
+
+class SOSSIInfo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(children: [
+              const Text(
+                  "Saving Our Sons & Sisters international (SOSSI) is a 501(c)3 nonprofit organization that transforms and improves the overall success of the youth, veterans, seniors, families, and communities. Our intergenerational approach creates an ecosystem focused on exposure, developing strategic partnerships between community, educators, industry professionals, nonprofits, and professionals committing services, time and resources to develop a STEM-ready workforce and access to opportunities."),
+              Image.asset("assets/sossialpha.png")
+            ])));
   }
 }
 
@@ -44,20 +186,32 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState(0);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _selectedIndex;
+  _MyHomePageState(this._selectedIndex);
 
-  void _incrementCounter() {
+  Widget getWidgetState() {
+    if (_selectedIndex == 0) {
+      return LoginSignup();
+    } else if (_selectedIndex == 1) {
+      return SOSSIInfo();
+    } else {
+      return Text("ERROR! Some index value isn't supported! $_selectedIndex");
+    }
+  }
+
+  Function changeIndexCB(int index) {
+    return () {
+      changeIndex(index);
+    };
+  }
+
+  void changeIndex(int index) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      _selectedIndex = index;
     });
   }
 
@@ -70,46 +224,29 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: Colors.lightGreen[50],
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+          children: <Widget>[getWidgetState()],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: "Login/Signup",
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.map), label: "Info About SOSSI"),
+        ],
+        onTap: changeIndex,
+      ),
     );
   }
 }
