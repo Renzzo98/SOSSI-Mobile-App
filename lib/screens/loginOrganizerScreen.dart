@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_login/flutter_login.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../constants.dart';
+import '../users.dart';
 
 class LoginOrganizerScreen extends StatefulWidget {
   const LoginOrganizerScreen({Key? key}) : super(key: key);
@@ -7,128 +13,114 @@ class LoginOrganizerScreen extends StatefulWidget {
 }
 
 class _LoginOrganizerScreenState extends State<LoginOrganizerScreen> {
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
+  Duration get loginTime => Duration(milliseconds: timeDilation.ceil() * 2250);
+
+  Future<String?> _loginUser(LoginData data) {
+    return Future.delayed(loginTime).then((_) {
+      if (!mockUsers.containsKey(data.name)) {
+        return 'User not exists';
+      }
+      if (mockUsers[data.name] != data.password) {
+        return 'Password does not match';
+      }
+      return null;
+    });
+  }
+
+  Future<String?> _signupUser(SignupData data) {
+    return Future.delayed(loginTime).then((_) {
+      return null;
+    });
+  }
+
+  Future<String?> _recoverPassword(String name) {
+    return Future.delayed(loginTime).then((_) {
+      if (!mockUsers.containsKey(name)) {
+        return 'User not exists';
+      }
+      return null;
+    });
+  }
+
+  Future<String?> _signupConfirm(String error, LoginData data) {
+    return Future.delayed(loginTime).then((_) {
+      return null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.lightGreen[50],
         resizeToAvoidBottomInset: false,
-        body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <
-            Widget>[
-          Stack(
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 40.0),
-                decoration: new BoxDecoration(color: Colors.lightGreen[100]),
-                child: const Text(
-                  "LOG IN AS AN EVENT ORGANIZER",
-                  style: TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.fromLTRB(260.0, 125.0, 0.0, 0.0),
-              )
-            ],
-          ),
-          Container(
-              padding:
-                  const EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
-              child: Column(
-                children: <Widget>[
-                  const SizedBox(height: 10.0),
-                  TextField(
-                    controller: emailController,
-                    decoration: const InputDecoration(
-                        labelText: 'EMAIL ',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green))),
-                  ),
-                  const SizedBox(height: 10.0),
-                  TextField(
-                    controller: passwordController,
-                    decoration: const InputDecoration(
-                        labelText: 'PASSWORD ',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green))),
-                    obscureText: true,
-                  ),
-                  const SizedBox(height: 60.0),
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushNamed('/main');
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: const Text(
-                                    "Login as Event Organizer Successful"),
-                                actions: <Widget>[
-                                  TextButton(
-                                    child: const Text("Ok"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
-                              );
-                            });
-                      },
-                      child: SizedBox(
-                          height: 60.0,
-                          child: Material(
-                            borderRadius: BorderRadius.circular(20.0),
-                            shadowColor: Colors.greenAccent,
-                            color: Colors.green,
-                            elevation: 7.0,
-                            child: const Center(
-                              child: Text(
-                                'LOG IN',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 25.0,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Montserrat'),
-                              ),
-                            ),
-                          ))),
-                  const SizedBox(height: 20.0),
-                  SizedBox(
-                    height: 40.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 40.0,
-                                spreadRadius: .5)
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20.0)),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Center(
-                          child: Text('Go Back',
-                              style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Montserrat')),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )),
-        ]));
+        body: FlutterLogin(
+          title: Constants.orgName,
+          logo: const AssetImage('assets/images/ecorp.png'),
+          logoTag: Constants.logoTag,
+          titleTag: Constants.titleTag,
+          navigateBackAfterRecovery: true,
+          onConfirmRecover: _signupConfirm,
+          onConfirmSignup: _signupConfirm,
+          loginAfterSignUp: false,
+          termsOfService: [
+            TermOfService(
+                id: 'newsletter',
+                mandatory: false,
+                text: 'Newsletter subscription'),
+            TermOfService(
+                id: 'general-term',
+                mandatory: true,
+                text: 'Term of services',
+                linkUrl: 'https://github.com/NearHuscarl/flutter_login'),
+          ],
+          additionalSignupFields: [
+            const UserFormField(
+                keyName: 'Username', icon: Icon(FontAwesomeIcons.userLarge)),
+            const UserFormField(keyName: 'Name'),
+            const UserFormField(keyName: 'Surname'),
+            UserFormField(
+              keyName: 'phone_number',
+              displayName: 'Phone Number',
+              userType: LoginUserType.phone,
+              fieldValidator: (value) {
+                var phoneRegExp = RegExp(
+                    '^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}\$');
+                if (value != null &&
+                    value.length < 7 &&
+                    !phoneRegExp.hasMatch(value)) {
+                  return "This isn't a valid phone number";
+                }
+                return null;
+              },
+            ),
+          ],
+          userValidator: (value) {
+            if (!value!.contains('@') || !value.endsWith('.com')) {
+              return "Email must contain '@' and end with '.com'";
+            }
+            return null;
+          },
+          passwordValidator: (value) {
+            if (value!.isEmpty) {
+              return 'Password is empty';
+            }
+            return null;
+          },
+          showDebugButtons: false,
+          onLogin: (loginData) {
+            debugPrint('Login info');
+            debugPrint('Name: ${loginData.name}');
+            debugPrint('Password: ${loginData.password}');
+            Navigator.of(context).pushNamed('/main');
+            //return _loginUser(loginData);
+          },
+          initialAuthMode: AuthMode.login,
+          onRecoverPassword: (name) {
+            debugPrint('Recover password info');
+            debugPrint('Name: $name');
+            return _recoverPassword(name);
+            // Show new password dialog
+          },
+        ));
   }
 }

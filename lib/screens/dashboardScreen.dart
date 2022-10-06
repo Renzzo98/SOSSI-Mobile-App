@@ -90,7 +90,7 @@ class _DashboardScreenState extends State<DashboardScreen>
             ),
           ),
           HeroText(
-            Constants.appName,
+            Constants.loginName,
             tag: Constants.titleTag,
             viewState: ViewState.shrunk,
             style: LoginThemeHelper.loginTextStyle,

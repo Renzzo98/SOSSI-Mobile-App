@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      title: Constants.appName,
+      title: Constants.loginName,
       logo: const AssetImage('assets/images/ecorp.png'),
       logoTag: Constants.logoTag,
       titleTag: Constants.titleTag,
