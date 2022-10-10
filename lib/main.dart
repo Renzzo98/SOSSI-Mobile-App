@@ -38,8 +38,9 @@ class MyApp extends StatelessWidget {
               primaryColor: Color.fromARGB(255, 31, 204, 193),
               brightness: Brightness.light,
               backgroundColor: Color.fromARGB(255, 31, 204, 193),
-              colorScheme:
-                  ColorScheme.fromSwatch().copyWith(secondary: Colors.white)),
+              colorScheme: ColorScheme.fromSwatch().copyWith(
+                  secondary: Color.fromARGB(255, 27, 190, 179),
+                  tertiary: Colors.white)),
           home: const MyHomePage(title: appTitle),
         ));
   }
@@ -144,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.secondary),
+                    color: Theme.of(context).colorScheme.tertiary),
               ),
             ),
           ),
