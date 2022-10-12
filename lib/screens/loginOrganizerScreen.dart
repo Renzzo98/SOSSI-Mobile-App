@@ -111,7 +111,7 @@ class _LoginOrganizerScreenState extends State<LoginOrganizerScreen> {
             debugPrint('Login info');
             debugPrint('Name: ${loginData.name}');
             debugPrint('Password: ${loginData.password}');
-            Navigator.of(context).pushNamed('/main');
+            Navigator.of(context).pushNamed('/orgMain');
             //return _loginUser(loginData);
           },
           initialAuthMode: AuthMode.login,
