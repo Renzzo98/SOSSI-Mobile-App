@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'citizenProfileScreen.dart';
 import 'eventList.dart';
 import 'mapScreen.dart';
-import 'sdgScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     } else if (_selectedIndex == 1) {
       return const MapScreen();
     } else if (_selectedIndex == 2) {
-      return const ChooseSDGList();
+      return const CitizenProfile();
     } else {
       return const Center(child: Text("Setting Page will be here"));
     }
@@ -41,11 +41,12 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _selectedIndex,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.people),
+            icon: Icon(Icons.list_alt),
             label: "Events",
           ),
           BottomNavigationBarItem(icon: Icon(Icons.map), label: "Map"),
-          BottomNavigationBarItem(icon: Icon(Icons.people), label: "SDG"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person_outline), label: "Profile"),
 //          BottomNavigationBarItem(
 //            icon: Icon(Icons.settings), title: Text("Settings")
 //          )
