@@ -7,6 +7,8 @@ import 'package:sossi_app/screens/loginScreen.dart';
 import 'package:sossi_app/screens/oldLoginScreen.dart';
 import 'package:sossi_app/screens/registerationScreen.dart';
 
+import 'screens/orgHomeScreen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
             '/events': (context) => const RegistrationScreen(),
             '/eventDetails': (context) => const RegistrationScreen(),
             '/main': (context) => const HomeScreen(),
+            '/orgMain': (context) => const OrgHomeScreen(),
             '/createEvent': (context) => const RegistrationScreen(),
             '/editEvent': (context) => const RegistrationScreen(),
             '/loginOrganizer': (context) => const LoginOrganizerScreen(),
