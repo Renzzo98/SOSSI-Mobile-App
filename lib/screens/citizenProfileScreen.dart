@@ -42,7 +42,7 @@ class _CitizenProfileState extends State<CitizenProfile> {
                         padding: const EdgeInsets.only(right: 15),
                         child: IconButton(
                           onPressed: () =>
-                              Navigator.of(context).pushNamed("/main"),
+                              Navigator.of(context).pushNamed("/challenges"),
                           icon: const Icon(
                             Icons.military_tech,
                             color: Colors.white,

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sossi_app/screens/dashboardScreen.dart';
-import 'package:sossi_app/screens/homeScreen.dart';
-import 'package:sossi_app/screens/loginOrganizerScreen.dart';
-import 'package:sossi_app/screens/loginScreen.dart';
-import 'package:sossi_app/screens/oldLoginScreen.dart';
-import 'package:sossi_app/screens/registerationScreen.dart';
 
+import 'screens/challengeScreen.dart';
+import 'screens/homeScreen.dart';
+import 'screens/loginOrganizerScreen.dart';
+import 'screens/oldLoginScreen.dart';
 import 'screens/orgHomeScreen.dart';
+import 'screens/registrationScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,6 +34,7 @@ class MyApp extends StatelessWidget {
             '/createEvent': (context) => const RegistrationScreen(),
             '/editEvent': (context) => const RegistrationScreen(),
             '/loginOrganizer': (context) => const LoginOrganizerScreen(),
+            '/challenges': (context) => const ChallengeScreen(),
           },
           themeMode: ThemeMode.light,
           theme: ThemeData(
