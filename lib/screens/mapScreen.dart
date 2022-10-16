@@ -1,7 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../constants.dart';
+import '../model/Event.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
@@ -14,25 +18,21 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  static const CameraPosition event1 = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
-  static const CameraPosition event2 = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
         mapType: MapType.normal,
-        initialCameraPosition: event1,
+        initialCameraPosition: CameraPosition(
+            target: LatLng(51.49251273004651, -0.010537408777957719),
+            zoom: 14.4746),
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
+        },
+        markers: {
+          getMarker(Constants.events[0]),
+          getMarker(Constants.events[1]),
+          getMarker(Constants.events[2]),
         },
       ),
       // floatingActionButton: FloatingActionButton.extended(
@@ -47,4 +47,15 @@ class _MapScreenState extends State<MapScreen> {
   //   final GoogleMapController controller = await _controller.future;
   //   controller.animateCamera(CameraUpdate.newCameraPosition(event2));
   // }
+
+  Marker getMarker(Event event) {
+    BitmapDescriptor iconType = event.RSVP
+        ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen)
+        : BitmapDescriptor.defaultMarker;
+    return Marker(
+        markerId: MarkerId(event.eventID),
+        position: LatLng(event.latitude, event.longitude),
+        infoWindow: InfoWindow(title: event.name),
+        icon: iconType);
+  }
 }
