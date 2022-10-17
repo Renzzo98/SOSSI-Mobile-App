@@ -6,13 +6,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../constants.dart';
 import '../users.dart';
 
-class LoginOrganizerScreen extends StatefulWidget {
-  const LoginOrganizerScreen({Key? key}) : super(key: key);
+class RegistrationScreen extends StatefulWidget {
+  const RegistrationScreen({Key? key}) : super(key: key);
+
   @override
-  _LoginOrganizerScreenState createState() => _LoginOrganizerScreenState();
+  // ignore: library_private_types_in_public_api
+  _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _LoginOrganizerScreenState extends State<LoginOrganizerScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   Duration get loginTime => Duration(milliseconds: timeDilation.ceil() * 2250);
 
   Future<String?> _loginUser(LoginData data) {
@@ -54,7 +56,7 @@ class _LoginOrganizerScreenState extends State<LoginOrganizerScreen> {
         backgroundColor: Colors.lightGreen[50],
         resizeToAvoidBottomInset: false,
         body: FlutterLogin(
-          title: Constants.orgName,
+          title: Constants.regName,
           logo: const AssetImage('assets/images/ecorp.png'),
           logoTag: Constants.logoTag,
           titleTag: Constants.titleTag,
@@ -111,10 +113,10 @@ class _LoginOrganizerScreenState extends State<LoginOrganizerScreen> {
             debugPrint('Login info');
             debugPrint('Name: ${loginData.name}');
             debugPrint('Password: ${loginData.password}');
-            Navigator.of(context).pushNamed('/orgMain');
+            Navigator.of(context).pushNamed('/main');
             //return _loginUser(loginData);
           },
-          initialAuthMode: AuthMode.login,
+          initialAuthMode: AuthMode.signup,
           onRecoverPassword: (name) {
             debugPrint('Recover password info');
             debugPrint('Name: $name');

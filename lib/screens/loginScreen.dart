@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sossi_app/screens/registerationScreen.dart';
+import 'package:sossi_app/screens/registrationScreen.dart';
 
 import '../constants.dart';
 import '../custom_routes.dart';
@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      title: Constants.appName,
+      title: Constants.loginName,
       logo: const AssetImage('assets/images/ecorp.png'),
       logoTag: Constants.logoTag,
       titleTag: Constants.titleTag,

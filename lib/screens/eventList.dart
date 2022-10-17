@@ -17,7 +17,10 @@ class _EventListState extends State<EventList> {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return Center(child: CircularProgressIndicator());
+      return Center(
+          child: CircularProgressIndicator(
+        color: Theme.of(context).backgroundColor,
+      ));
     }
     // ignore: unnecessary_new
     return new Scaffold(

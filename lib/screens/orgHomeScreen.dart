@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 
-import 'citizenProfileScreen.dart';
 import 'eventList.dart';
 import 'mapScreen.dart';
+import 'orgProfileScreen.dart';
+import 'sdgScreen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class OrgHomeScreen extends StatefulWidget {
+  const OrgHomeScreen({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _HomeScreenState createState() => _HomeScreenState();
+  _OrgHomeScreenState createState() => _OrgHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _OrgHomeScreenState extends State<OrgHomeScreen> {
   int _selectedIndex = 0;
 
   void changeIndex(int index) {
@@ -23,11 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget getCurrentSubwidget() {
     if (_selectedIndex == 0) {
-      return const EventList();
+      return const OrgProfile();
     } else if (_selectedIndex == 1) {
-      return const MapScreen();
+      return const EventList();
     } else if (_selectedIndex == 2) {
-      return const CitizenProfile();
+      return const ChooseSDGList();
     } else {
       return const Center(child: Text("Setting Page will be here"));
     }
@@ -38,19 +39,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: getCurrentSubwidget(),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Theme.of(context).backgroundColor,
         currentIndex: _selectedIndex,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt),
-            label: "Events",
+            icon: Icon(Icons.home),
+            label: "Home",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: "Map"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline), label: "Profile"),
-//          BottomNavigationBarItem(
-//            icon: Icon(Icons.settings), title: Text("Settings")
-//          )
+          BottomNavigationBarItem(icon: Icon(Icons.event), label: "Events"),
         ],
         onTap: changeIndex,
       ),

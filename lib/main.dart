@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:sossi_app/screens/dashboardScreen.dart';
-import 'package:sossi_app/screens/homeScreen.dart';
-import 'package:sossi_app/screens/loginOrganizerScreen.dart';
-import 'package:sossi_app/screens/loginScreen.dart';
-import 'package:sossi_app/screens/oldLoginScreen.dart';
-import 'package:sossi_app/screens/registerationScreen.dart';
+import 'package:flutter/services.dart';
+import 'package:sossi_app/screens/eventDetailScreen.dart';
+
+import 'screens/challengeScreen.dart';
+import 'screens/homeScreen.dart';
+import 'screens/loginOrganizerScreen.dart';
+import 'screens/oldLoginScreen.dart';
+import 'screens/orgHomeScreen.dart';
+import 'screens/registrationScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,156 +21,32 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: appTitle,
-      initialRoute: '/',
-      routes: {
-        '/register': (context) => const RegistrationScreen(),
-        '/login': (context) => const OldLoginScreen(),
-        '/events': (context) => const RegistrationScreen(),
-        '/eventDetails': (context) => const RegistrationScreen(),
-        '/main': (context) => const HomeScreen(),
-        '/createEvent': (context) => const RegistrationScreen(),
-        '/editEvent': (context) => const RegistrationScreen(),
-        '/loginOrganizer': (context) => const LoginOrganizerScreen(),
-      },
-      theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          primaryColor: Colors.green,
-          colorScheme:
-              ColorScheme.fromSwatch().copyWith(secondary: Colors.amber)),
-      home: const MyHomePage(title: appTitle),
-    );
-  }
-}
-
-class LoginSignup extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return Expanded(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.fromLTRB(15.0, 30.0, 0.0, 0.0),
-                decoration: new BoxDecoration(color: Colors.lightGreen[100]),
-                child: const Text(
-                  "WELCOME TO LET'S PLAY ATL",
-                  style: TextStyle(fontSize: 45.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.fromLTRB(50.0, 50.0, 0.0, 0.0),
-              )
-            ],
-          ),
-          Expanded(
-              child: Padding(
-                  padding: EdgeInsets.only(top: 0.0, left: 20.0, right: 20.0),
-                  child: ListView(
-                    children: <Widget>[
-                      const SizedBox(height: 60.0),
-                      SizedBox(
-                          height: 60.0,
-                          child: Material(
-                            borderRadius: BorderRadius.circular(20.0),
-                            shadowColor: Colors.greenAccent,
-                            color: Colors.green,
-                            elevation: 7.0,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context).pushNamed('/login');
-                              },
-                              child: const Center(
-                                child: Text(
-                                  'LOG IN AS A CITIZEN',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 25.0,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat'),
-                                ),
-                              ),
-                            ),
-                          )),
-                      const SizedBox(height: 60.0),
-                      SizedBox(
-                          height: 60.0,
-                          child: Material(
-                            borderRadius: BorderRadius.circular(20.0),
-                            shadowColor: Colors.greenAccent,
-                            color: Colors.green,
-                            elevation: 7.0,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed('/loginOrganizer');
-                              },
-                              child: const Center(
-                                child: Text(
-                                  'LOG IN AS AN ORGANIZER',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 25.0,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat'),
-                                ),
-                              ),
-                            ),
-                          )),
-                      const SizedBox(height: 60.0),
-                      SizedBox(
-                        height: 60.0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.grey,
-                                    blurRadius: 40.0,
-                                    spreadRadius: .5)
-                              ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20.0)),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed('/register');
-                            },
-                            child: const Center(
-                              child: Text('SIGN UP',
-                                  style: TextStyle(
-                                      fontSize: 25.0,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat')),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ))),
-        ]));
-  }
-}
-
-class SOSSIInfo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Column(children: [
-              const Text(
-                  "Saving Our Sons & Sisters international (SOSSI) is a 501(c)3 nonprofit organization that transforms and improves the overall success of the youth, veterans, seniors, families, and communities. Our intergenerational approach creates an ecosystem focused on exposure, developing strategic partnerships between community, educators, industry professionals, nonprofits, and professionals committing services, time and resources to develop a STEM-ready workforce and access to opportunities."),
-              Image.asset("assets/sossialpha.png")
-            ])));
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: MaterialApp(
+          initialRoute: '/',
+          routes: {
+            '/register': (context) => const RegistrationScreen(),
+            '/login': (context) => const OldLoginScreen(),
+            '/events': (context) => const RegistrationScreen(),
+            '/main': (context) => const HomeScreen(),
+            '/orgMain': (context) => const OrgHomeScreen(),
+            '/createEvent': (context) => const RegistrationScreen(),
+            '/editEvent': (context) => const RegistrationScreen(),
+            '/detailEvent': (context) => const EventDetailScreen(),
+            '/loginOrganizer': (context) => const LoginOrganizerScreen(),
+            '/challenges': (context) => const ChallengeScreen(),
+          },
+          themeMode: ThemeMode.light,
+          theme: ThemeData(
+              primaryColor: Color.fromARGB(255, 31, 204, 193),
+              brightness: Brightness.light,
+              backgroundColor: Color.fromARGB(255, 31, 204, 193),
+              colorScheme: ColorScheme.fromSwatch().copyWith(
+                  secondary: Color.fromARGB(255, 27, 190, 179),
+                  tertiary: Colors.white)),
+          home: const MyHomePage(title: appTitle),
+        ));
   }
 }
 
@@ -195,9 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget getWidgetState() {
     if (_selectedIndex == 0) {
-      return LoginSignup();
+      return _loginSignup(context);
     } else if (_selectedIndex == 1) {
-      return SOSSIInfo();
+      return _SOSSIInfo(context);
     } else {
       return Text("ERROR! Some index value isn't supported! $_selectedIndex");
     }
@@ -224,29 +103,180 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      backgroundColor: Colors.lightGreen[50],
+      backgroundColor: Theme.of(context).backgroundColor,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[getWidgetState()],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: "Login/Signup",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.map), label: "Info About SOSSI"),
-        ],
-        onTap: changeIndex,
-      ),
     );
+  }
+
+  Widget _loginSignup(context) {
+    return Expanded(
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+          Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Align(
+                  alignment: Alignment.topRight,
+                  child: TextButton(
+                      onPressed: () =>
+                          Navigator.of(context).pushNamed('/register'),
+                      child: const Text(
+                        "REGISTER",
+                        style: TextStyle(color: Colors.white),
+                      )))),
+
+          const Padding(
+            padding: EdgeInsets.fromLTRB(40, 50, 0, 0),
+            child: Icon(
+              Icons.forum,
+              color: Colors.white,
+              size: 50.0,
+              semanticLabel: 'LET PLAY ATL ICON',
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 50),
+            child: Center(
+              child: Text(
+                "LET'S PLAY ATL",
+                style: TextStyle(
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.tertiary),
+              ),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(MediaQuery.of(context).size.width - 70, 10),
+                  backgroundColor: Colors.white,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 18, horizontal: 32),
+                ),
+                onPressed: () => Navigator.of(context).pushNamed('/login'),
+                child: Text(
+                  "CITIZEN LOGIN",
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                )),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(MediaQuery.of(context).size.width - 70, 10),
+                  backgroundColor: Colors.white,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 18, horizontal: 32),
+                ),
+                onPressed: () =>
+                    Navigator.of(context).pushNamed('/loginOrganizer'),
+                child: Text(
+                  "ORG LOGIN",
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                )),
+          ),
+          // Padding(
+          //     padding: EdgeInsets.only(top: 0.0, left: 20.0, right: 20.0),
+          //     child: ListView(
+          //       children: <Widget>[
+          //         const SizedBox(height: 60.0),
+          //         SizedBox(
+          //             height: 60.0,
+          //             child: Material(
+          //               borderRadius: BorderRadius.circular(20.0),
+          //               shadowColor: Colors.greenAccent,
+          //               color: Colors.green,
+          //               elevation: 7.0,
+          //               child: InkWell(
+          //                 onTap: () {
+          //                   Navigator.of(context).pushNamed('/login');
+          //                 },
+          //                 child: const Center(
+          //                   child: Text(
+          //                     'LOG IN AS A CITIZEN',
+          //                     style: TextStyle(
+          //                         color: Colors.white,
+          //                         fontSize: 25.0,
+          //                         fontWeight: FontWeight.bold,
+          //                         fontFamily: 'Montserrat'),
+          //                   ),
+          //                 ),
+          //               ),
+          //             )),
+          //         const SizedBox(height: 60.0),
+          //         SizedBox(
+          //             height: 60.0,
+          //             child: Material(
+          //               borderRadius: BorderRadius.circular(20.0),
+          //               shadowColor: Colors.greenAccent,
+          //               color: Colors.green,
+          //               elevation: 7.0,
+          //               child: InkWell(
+          //                 onTap: () {
+          //                   Navigator.of(context).pushNamed('/loginOrganizer');
+          //                 },
+          //                 child: const Center(
+          //                   child: Text(
+          //                     'LOG IN AS AN ORGANIZER',
+          //                     style: TextStyle(
+          //                         color: Colors.white,
+          //                         fontSize: 25.0,
+          //                         fontWeight: FontWeight.bold,
+          //                         fontFamily: 'Montserrat'),
+          //                   ),
+          //                 ),
+          //               ),
+          //             )),
+          //         const SizedBox(height: 60.0),
+          //         SizedBox(
+          //           height: 60.0,
+          //           child: Container(
+          //             decoration: BoxDecoration(
+          //                 boxShadow: const [
+          //                   BoxShadow(
+          //                       color: Colors.grey,
+          //                       blurRadius: 40.0,
+          //                       spreadRadius: .5)
+          //                 ],
+          //                 color: Colors.white,
+          //                 borderRadius: BorderRadius.circular(20.0)),
+          //             child: InkWell(
+          //               onTap: () {
+          //                 Navigator.of(context).pushNamed('/register');
+          //               },
+          //               child: const Center(
+          //                 child: Text('SIGN UP',
+          //                     style: TextStyle(
+          //                         fontSize: 25.0,
+          //                         fontWeight: FontWeight.bold,
+          //                         fontFamily: 'Montserrat')),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //     ))
+        ]));
+  }
+
+  Widget _SOSSIInfo(context) {
+    return Center(
+        child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(children: [
+              const Text(
+                  "Saving Our Sons & Sisters international (SOSSI) is a 501(c)3 nonprofit organization that transforms and improves the overall success of the youth, veterans, seniors, families, and communities. Our intergenerational approach creates an ecosystem focused on exposure, developing strategic partnerships between community, educators, industry professionals, nonprofits, and professionals committing services, time and resources to develop a STEM-ready workforce and access to opportunities."),
+              //Image.asset("assets/sossialpha.png")
+            ])));
   }
 }
