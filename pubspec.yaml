@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_login: ^4.0.0
   intl: ^0.17.0
+  google_maps_flutter: ^2.2.1
   auto_size_text: ^3.0.0
   square_percent_indicater: ^0.1.0
 

@@ -4,6 +4,10 @@
         android:label="sossi_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- SOSSI should create their own API key with restructions
+             for the Google Maps feature after handoff. This API key is just for dev purposes -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+          android:value="AIzaSyCN2GI_xvmDaLFAi1KyYrn9AeVIyeUTw7s"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
