@@ -35,18 +35,8 @@ class _MapScreenState extends State<MapScreen> {
           getMarker(Constants.events[2]),
         },
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: _goToTheLake,
-      //   label: const Text('To the lake!'),
-      //   icon: const Icon(Icons.directions_boat),
-      // ),
     );
   }
-
-  // Future<void> _goToTheLake() async {
-  //   final GoogleMapController controller = await _controller.future;
-  //   controller.animateCamera(CameraUpdate.newCameraPosition(event2));
-  // }
 
   Marker getMarker(Event event) {
     BitmapDescriptor iconType = event.RSVP
