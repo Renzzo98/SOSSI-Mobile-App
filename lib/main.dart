@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sossi_app/screens/eventDetailScreen.dart';
 
 import 'screens/challengeScreen.dart';
 import 'screens/homeScreen.dart';
@@ -28,11 +29,11 @@ class MyApp extends StatelessWidget {
             '/register': (context) => const RegistrationScreen(),
             '/login': (context) => const OldLoginScreen(),
             '/events': (context) => const RegistrationScreen(),
-            '/eventDetails': (context) => const RegistrationScreen(),
             '/main': (context) => const HomeScreen(),
             '/orgMain': (context) => const OrgHomeScreen(),
             '/createEvent': (context) => const RegistrationScreen(),
             '/editEvent': (context) => const RegistrationScreen(),
+            '/detailEvent': (context) => const EventDetailScreen(),
             '/loginOrganizer': (context) => const LoginOrganizerScreen(),
             '/challenges': (context) => const ChallengeScreen(),
           },

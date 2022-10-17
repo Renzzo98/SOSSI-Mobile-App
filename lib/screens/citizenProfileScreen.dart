@@ -188,45 +188,12 @@ class _CitizenProfileState extends State<CitizenProfile> {
             ),
           ),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).pushNamed('/detailEvent'),
             style: OutlinedButton.styleFrom(
               minimumSize: Size(dWidth - 20, 40),
             ),
             child: Text(
-              "EDIT DETAILS",
-              style: TextStyle(
-                  fontSize: 16, color: Theme.of(context).backgroundColor),
-            ),
-          ),
-          OutlinedButton(
-            onPressed: () {},
-            style: OutlinedButton.styleFrom(
-              minimumSize: Size(dWidth - 20, 40),
-            ),
-            child: Text(
-              "ABOUT SDG",
-              style: TextStyle(
-                  fontSize: 16, color: Theme.of(context).backgroundColor),
-            ),
-          ),
-          OutlinedButton(
-            onPressed: () {},
-            style: OutlinedButton.styleFrom(
-              minimumSize: Size(dWidth - 20, 40),
-            ),
-            child: Text(
-              "EDIT DETAILS",
-              style: TextStyle(
-                  fontSize: 16, color: Theme.of(context).backgroundColor),
-            ),
-          ),
-          OutlinedButton(
-            onPressed: () {},
-            style: OutlinedButton.styleFrom(
-              minimumSize: Size(dWidth - 20, 40),
-            ),
-            child: Text(
-              "ABOUT SDG",
+              "EVENT DETAILS",
               style: TextStyle(
                   fontSize: 16, color: Theme.of(context).backgroundColor),
             ),

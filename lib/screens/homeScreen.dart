@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: getCurrentSubwidget(),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Theme.of(context).backgroundColor,
         currentIndex: _selectedIndex,
         items: const [
           BottomNavigationBarItem(
