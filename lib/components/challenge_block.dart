@@ -38,8 +38,10 @@ class _ChallengeBlockState extends State<ChallengeBlock> {
     var challengeTitle = widget.title;
 
     return Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(10),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               width: 40,
@@ -66,7 +68,7 @@ class _ChallengeBlockState extends State<ChallengeBlock> {
                 )),
             isComplete
                 ? const Icon(Icons.check_circle)
-                : const Icon(Icons.radio_button_unchecked)
+                : const Icon(Icons.radio_button_unchecked),
           ],
         ));
   }
