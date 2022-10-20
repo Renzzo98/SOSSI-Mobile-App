@@ -1,4 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:sossi_app/constants.dart';
+
+import '../components/icon_value_pair.dart';
 
 class OrgProfile extends StatefulWidget {
   const OrgProfile({Key? key}) : super(key: key);
@@ -33,7 +37,7 @@ class _OrgProfileState extends State<OrgProfile> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 25,
+                  height: 40,
                 ),
                 Row(
                   children: [
@@ -52,8 +56,9 @@ class _OrgProfileState extends State<OrgProfile> {
                         children: const [
                           SizedBox(
                             width: 180,
-                            child: Text(
-                              "Johnny Smithson",
+                            child: AutoSizeText(
+                              "Organization Name",
+                              maxLines: 1,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 25),
                             ),
@@ -63,10 +68,13 @@ class _OrgProfileState extends State<OrgProfile> {
                           ),
                           SizedBox(
                             width: 180,
-                            child: Text(
+                            child: AutoSizeText(
                               "testingEmail@yahoo.com",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12),
+                              maxLines: 1,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontStyle: FontStyle.italic),
                             ),
                           )
                         ],
@@ -81,7 +89,7 @@ class _OrgProfileState extends State<OrgProfile> {
             padding: const EdgeInsets.only(top: 10),
             child: Container(
               width: dWidth - 20,
-              height: dWidth / 2 - 20,
+              height: dWidth / 2,
               decoration: BoxDecoration(
                   color: Theme.of(context).backgroundColor,
                   border: Border.all(
@@ -90,89 +98,44 @@ class _OrgProfileState extends State<OrgProfile> {
                   borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      '8',
-                      style: TextStyle(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(30, 10, 0, 10),
+                      child: AutoSizeText(
+                        "123 Streeting Ave,\nNew York, NY, 11202",
+                        maxLines: 2,
+                        style: TextStyle(
                           color: Colors.white,
-                          fontSize: 35,
-                          fontWeight: FontWeight.w600),
+                          fontSize: 18,
+                        ),
+                      ),
                     ),
-                    Divider(),
-                    Text(
-                      'Employees',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w200),
-                    )
+                    Center(
+                      child: SizedBox(
+                          width: dWidth - 80,
+                          child: const Divider(
+                            color: Colors.white,
+                          )),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        IconValuePair(
+                          paddingSize: 10,
+                          brightness: true,
+                          value: '13',
+                          category: CategoryConstants.group,
+                        ),
+                        IconValuePair(
+                          paddingSize: 10,
+                          brightness: true,
+                          value: '5',
+                          category: CategoryConstants.event,
+                        )
+                      ],
+                    ),
                   ]),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: dWidth / 2 - 20,
-                  height: dWidth / 2 - 20,
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).backgroundColor,
-                      border: Border.all(
-                        color: Theme.of(context).backgroundColor,
-                      ),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(20))),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          '8',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          'Employees',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w200),
-                        )
-                      ]),
-                ),
-                Container(
-                  width: dWidth / 2 - 20,
-                  height: dWidth / 2 - 20,
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).backgroundColor,
-                      border: Border.all(
-                        color: Theme.of(context).backgroundColor,
-                      ),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(20))),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          '11',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          'Events',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w200),
-                        )
-                      ]),
-                ),
-              ],
             ),
           ),
         ],
