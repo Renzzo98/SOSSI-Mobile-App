@@ -39,6 +39,7 @@ class _OrgHomeScreenState extends State<OrgHomeScreen> {
     return Scaffold(
       body: getCurrentSubwidget(),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Theme.of(context).primaryColor,
         currentIndex: _selectedIndex,
         items: const [
           BottomNavigationBarItem(
