@@ -7,13 +7,13 @@ class Event {
   Event(
       {required this.name,
       required this.description,
-      required this.date,
-      required this.latitude,
-      required this.longitude,
       required this.dateStart,
       required this.dateEnd,
-      required this.eventID,
-      required this.isOngoing,
+      this.date = "",
+      this.latitude = 0,
+      this.longitude = 0,
+      this.eventID = '',
+      this.isOngoing = true,
       this.sdgs = const [],
       this.RSVP = false,
       this.tags = const []});
@@ -85,5 +85,18 @@ class Event {
       for (int i = 0; i < rawData["sdg"].length; i++) {}
     }
 //    if (rawData.containsKey(""))
+  }
+
+  factory Event.fromJson(Map<String, dynamic> json) {
+    return Event(
+        name: json["name"],
+        eventID: json["id"],
+        dateStart: json["startDate"],
+        dateEnd: json["endDate"],
+        latitude: json["latitude"],
+        longitude: json["longitude"],
+        description: json["description"],
+        date: json["date"],
+        isOngoing: json["isOngoing"]);
   }
 }
