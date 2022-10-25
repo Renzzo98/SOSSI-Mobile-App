@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sossi_app/screens/createEventScreen.dart';
 import 'package:sossi_app/screens/eventDetailScreen.dart';
+import '../constants.dart';
 import '../model/Event.dart';
 
 import "package:sossi_app/constants.dart";
@@ -43,44 +44,61 @@ class _EventListState extends State<EventList> {
           child: CircularProgressIndicator(
         color: Theme.of(context).backgroundColor,
       ));
-    } else {
-      // ignore: unnecessary_new
-      return new Scaffold(
-        appBar: AppBar(
-          title: const Text("Events"),
-        ),
-        backgroundColor: Colors.lightGreen[50],
-        resizeToAvoidBottomInset: false,
-        body: ListView.builder(
-          itemCount: events.length,
-          padding: const EdgeInsets.all(12.0),
-          itemBuilder: (BuildContext c, int index) {
-            return GestureDetector(
-                onTap: () {
-                  print("tapped card");
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const EventDetailScreen()),
-                  );
-                },
-                child: Card(
-                    child: Column(children: [
-                  ListTile(leading: Text(events[index].name))
-                ])));
-          },
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const CreateEventScreen()),
-            );
-          },
-        ),
-      );
     }
+    // ignore: unnecessary_new
+    return new Scaffold(
+      backgroundColor: Colors.grey[100],
+      resizeToAvoidBottomInset: false,
+      body: ListView.builder(
+        itemCount: Constants.events.length,
+        padding: const EdgeInsets.all(12.0),
+        itemBuilder: (BuildContext c, int index) {
+          return GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed('/detailEvent',
+                    arguments: Event(
+                        name: Constants.events[index].name,
+                        description: Constants.events[index].description,
+                        date: Constants.events[index].date,
+                        latitude: Constants.events[index].latitude,
+                        longitude: Constants.events[index].longitude,
+                        dateStart: Constants.events[index].dateStart,
+                        dateEnd: Constants.events[index].dateEnd,
+                        orgID: Constants.events[index].orgID,
+                        orgName: Constants.events[index].orgName,
+                        rsvpNum: Constants.events[index].rsvpNum,
+                        rating: Constants.events[index].rating,
+                        eventID: Constants.events[index].eventID,
+                        isOngoing: Constants.events[index].isOngoing));
+              },
+              child: Card(
+                  child: Column(children: [
+                ListTile(
+                  leading: const Icon(
+                    Icons.event_note,
+                    size: 30,
+                  ),
+                  title: Text(Constants.events[index].name),
+                  subtitle: Text(Constants.events[index].orgName),
+                  trailing: Constants.events[index].isOngoing
+                      ? Icon(
+                          Icons.event_available,
+                          color: Theme.of(context).primaryColor,
+                        )
+                      : const Icon(
+                          Icons.event_busy,
+                          color: Colors.redAccent,
+                        ),
+                )
+              ])));
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).pushNamed("/createEvent");
+        },
+      ),
+    );
   }
 }

@@ -56,7 +56,7 @@ class _CitizenProfileState extends State<CitizenProfile> {
                     const Padding(
                       padding: EdgeInsets.fromLTRB(25, 10, 25, 0),
                       child: Icon(
-                        Icons.person_search,
+                        Icons.account_circle,
                         color: Colors.white,
                         size: 65,
                       ),
@@ -101,20 +101,20 @@ class _CitizenProfileState extends State<CitizenProfile> {
                       DoubleValuePair(
                         paddingSize: 20,
                         brightness: true,
-                        value1: "8",
-                        value2: "Stats 1",
+                        value1: "5",
+                        value2: "Medals",
                       ),
                       DoubleValuePair(
                         paddingSize: 20,
                         brightness: true,
-                        value1: "13",
-                        value2: "Stats 2",
+                        value1: "7",
+                        value2: "Level",
                       ),
                       DoubleValuePair(
                         paddingSize: 20,
                         brightness: true,
-                        value1: "4",
-                        value2: "Stats 3",
+                        value1: "5",
+                        value2: "Attended Events",
                       ),
                     ],
                   ),
@@ -122,49 +122,52 @@ class _CitizenProfileState extends State<CitizenProfile> {
               ],
             ),
           ),
-          Container(
-              height: 80.0,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondary,
-                  border: Border.all(
+          InkWell(
+            onTap: () => Navigator.of(context).pushNamed('/myMedals'),
+            child: Container(
+                height: 80.0,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondary,
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20))),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [
+                      Icon(
+                        Icons.workspace_premium,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      Icon(
+                        Icons.connect_without_contact,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      Icon(
+                        Icons.self_improvement,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      Icon(
+                        Icons.handshake,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      Icon(
+                        Icons.emoji_transportation,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                    ],
                   ),
-                  borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20))),
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    Icon(
-                      Icons.workspace_premium,
-                      size: 50,
-                      color: Colors.white,
-                    ),
-                    Icon(
-                      Icons.workspace_premium,
-                      size: 50,
-                      color: Colors.white,
-                    ),
-                    Icon(
-                      Icons.workspace_premium,
-                      size: 50,
-                      color: Colors.white,
-                    ),
-                    Icon(
-                      Icons.workspace_premium,
-                      size: 50,
-                      color: Colors.white,
-                    ),
-                    Icon(
-                      Icons.workspace_premium,
-                      size: 50,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              )),
+                )),
+          ),
           OutlinedButton(
             onPressed: () {},
             style: OutlinedButton.styleFrom(
@@ -183,17 +186,6 @@ class _CitizenProfileState extends State<CitizenProfile> {
             ),
             child: Text(
               "ABOUT SDG",
-              style: TextStyle(
-                  fontSize: 16, color: Theme.of(context).backgroundColor),
-            ),
-          ),
-          OutlinedButton(
-            onPressed: () => Navigator.of(context).pushNamed('/detailEvent'),
-            style: OutlinedButton.styleFrom(
-              minimumSize: Size(dWidth - 20, 40),
-            ),
-            child: Text(
-              "EVENT DETAILS",
               style: TextStyle(
                   fontSize: 16, color: Theme.of(context).backgroundColor),
             ),

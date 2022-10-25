@@ -1,13 +1,16 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sossi_app/components/double_value_pair.dart';
+import 'package:sossi_app/model/Event.dart';
 
 import '../components/comment_block.dart';
 import '../components/icon_value_pair.dart';
 import '../constants.dart';
 
 class EventDetailScreen extends StatefulWidget {
-  const EventDetailScreen({Key? key}) : super(key: key);
+  const EventDetailScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -17,6 +20,9 @@ class EventDetailScreen extends StatefulWidget {
 class _EventDetailScreenState extends State<EventDetailScreen> {
   @override
   Widget build(BuildContext context) {
+    final parameters = ModalRoute.of(context)!.settings.arguments as Event;
+    var ratingNum = parameters.rating.toString();
+
     var dWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -57,9 +63,9 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                     minimumSize: Size(dWidth - 20, 40),
                     side: const BorderSide(width: 0.5, color: Colors.white),
                   ),
-                  child: const Text(
-                    "Org Creator",
-                    style: TextStyle(
+                  child: Text(
+                    parameters.orgName,
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                     ),
@@ -88,20 +94,20 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                       padding: const EdgeInsets.only(top: 15),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           SizedBox(
                             width: 180,
                             child: AutoSizeText(
-                              "Event Name",
+                              parameters.name,
                               maxLines: 1,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 25),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 180,
                             child: AutoSizeText(
                               "123 Streeting Ave,\nNew York, NY, 11202",
@@ -134,17 +140,17 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
               child: Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
+                  children: [
                     IconValuePair(
                       paddingSize: 10,
                       brightness: true,
-                      value: '34',
+                      value: parameters.rsvpNum.toString(),
                       category: CategoryConstants.group,
                     ),
                     IconValuePair(
                       paddingSize: 10,
                       brightness: true,
-                      value: '3/5',
+                      value: '$ratingNum/5',
                       category: CategoryConstants.star,
                     )
                   ],
