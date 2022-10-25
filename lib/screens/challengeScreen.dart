@@ -57,7 +57,10 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                 padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
                 child: Text(
                   "Challenges".toUpperCase(),
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold),
                 ),
               )
             ],
