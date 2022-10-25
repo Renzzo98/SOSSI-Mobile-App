@@ -40,12 +40,30 @@ class _MapScreenState extends State<MapScreen> {
 
   Marker getMarker(Event event) {
     BitmapDescriptor iconType = event.RSVP
-        ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen)
+        ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan)
         : BitmapDescriptor.defaultMarker;
     return Marker(
         markerId: MarkerId(event.eventID),
         position: LatLng(event.latitude, event.longitude),
-        infoWindow: InfoWindow(title: event.name),
+        infoWindow: InfoWindow(
+          title: event.name,
+          snippet: event.RSVP ? 'RSVP: True' : 'RSVP: False',
+          onTap: () => Navigator.of(context).pushNamed('/detailEvent',
+              arguments: Event(
+                  name: event.name,
+                  description: event.description,
+                  date: event.date,
+                  latitude: event.latitude,
+                  longitude: event.longitude,
+                  dateStart: event.dateStart,
+                  dateEnd: event.dateEnd,
+                  orgID: event.orgID,
+                  orgName: event.orgName,
+                  rsvpNum: event.rsvpNum,
+                  rating: event.rating,
+                  eventID: event.eventID,
+                  isOngoing: event.isOngoing)),
+        ),
         icon: iconType);
   }
 }

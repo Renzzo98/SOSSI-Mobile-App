@@ -7,25 +7,32 @@ class Event {
   Event(
       {required this.name,
       required this.description,
+      required this.orgName,
+      required this.orgID,
       required this.date,
       required this.latitude,
       required this.longitude,
       required this.dateStart,
       required this.dateEnd,
       required this.eventID,
+      required this.rsvpNum,
+      required this.rating,
       required this.isOngoing,
       this.sdgs = const [],
       this.RSVP = false,
       this.tags = const []});
 
   bool RSVP;
-
   DateTime dateStart;
   DateTime dateEnd;
   String name;
   String description;
+  String orgName;
+  String orgID;
   double latitude;
   double longitude;
+  int rsvpNum;
+  int rating;
   String eventID;
   List<SDG> sdgs;
   List<String> tags;
