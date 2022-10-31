@@ -147,7 +147,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                       orgName: '',
                                       rating: 5,
                                       rsvpNum: 0));
-                                  Constants.writeEvents();
                                   Navigator.pop(context);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
