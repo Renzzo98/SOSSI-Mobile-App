@@ -62,7 +62,7 @@ class _EventListState extends State<EventList> {
       backgroundColor: Colors.grey[100],
       resizeToAvoidBottomInset: false,
       body: ListView.builder(
-        itemCount: events.length,
+        itemCount: Constants.events.length,
         padding: const EdgeInsets.all(12.0),
         itemBuilder: (BuildContext c, int index) {
           return GestureDetector(
