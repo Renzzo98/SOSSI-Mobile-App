@@ -41,6 +41,10 @@ dependencies:
   google_maps_flutter: ^2.2.1
   auto_size_text: ^3.0.0
   square_percent_indicater: ^0.1.0
+  http: ^0.13.5
+  syncfusion_flutter_datepicker: ^20.3.50
+  date_time_picker: ^2.1.0
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
