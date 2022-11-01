@@ -2,9 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_login/flutter_login.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sossi_app/model/Event.dart';

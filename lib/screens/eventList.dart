@@ -1,10 +1,5 @@
-import 'dart:convert';
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:sossi_app/screens/createEventScreen.dart';
-import 'package:sossi_app/screens/eventDetailScreen.dart';
 import '../constants.dart';
 import '../model/Event.dart';
 
@@ -29,7 +24,7 @@ class _EventListState extends State<EventList> {
     final String? eventListString = prefs.getString('events');
     if (eventListString != null) {
       setState(() {
-        events = Event.decode(eventListString!);
+        events = Event.decode(eventListString);
       });
     }
     loaded();
@@ -44,7 +39,6 @@ class _EventListState extends State<EventList> {
   @override
   void initState() {
     super.initState();
-    List<Event> events = Constants.events;
     fetchEvents();
     isLoading = true;
   }
@@ -62,7 +56,7 @@ class _EventListState extends State<EventList> {
       backgroundColor: Colors.grey[100],
       resizeToAvoidBottomInset: false,
       body: ListView.builder(
-        itemCount: Constants.events.length,
+        itemCount: events.length,
         padding: const EdgeInsets.all(12.0),
         itemBuilder: (BuildContext c, int index) {
           return GestureDetector(
@@ -107,11 +101,13 @@ class _EventListState extends State<EventList> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          final result = await Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const CreateEventScreen()),
-          ).then((value) => fetchEvents());
+          );
+          print("should fetch now");
+          fetchEvents();
         },
       ),
     );
