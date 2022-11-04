@@ -69,6 +69,8 @@ class Event {
         jsonDict["sdg"].add({"id": sdg_item.id});
       }
     }
+    json["orgName"] = orgName;
+    json["orgId"] = orgId;
     jsonDict["rsvpNum"] = rsvpNum;
     jsonDict["rating"] = rating;
     return jsonDict;
@@ -119,8 +121,8 @@ class Event {
         longitude: json["longitude"],
         rating: json["rating"],
         rsvpNum: json["rsvpNum"],
-        orgID: '',
-        orgName: '');
+        orgID: json["orgId"],
+        orgName: json["orgName"]);
   }
 
   static Map<String, dynamic> toMap(Event event) => {
