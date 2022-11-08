@@ -12,6 +12,8 @@ class Constants {
   static const String event1 = 'Event 1';
   static const String event2 = 'Event 2';
   static const String event3 = 'Event 3';
+  static const String event4 = 'Event 4';
+  static const String event5 = 'Event 5';
 
   static const CameraPosition marker1 = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -37,8 +39,8 @@ class Constants {
       date: "Oct",
       latitude: 51.49220688011474,
       longitude: -0.010424728835688258,
-      dateStart: new DateTime(2022),
-      dateEnd: new DateTime(2022),
+      dateStart: DateTime.parse('2022-01-02'),
+      dateEnd: DateTime.parse('2022-11-02'),
       address: '342 Madison Ave,\nJacksonville MD 11421',
       orgID: '1',
       orgName: 'Big Brother Org',
@@ -54,8 +56,8 @@ class Constants {
       date: "Oct",
       latitude: 51.48224483913322,
       longitude: -0.0020602538668872154,
-      dateStart: new DateTime(2022),
-      dateEnd: new DateTime(2022),
+      dateStart: DateTime.parse('2021-01-02'),
+      dateEnd: DateTime.parse('2021-11-02'),
       address: '21 Lucky Row,\nHydroPack KC 12321',
       orgID: '1',
       orgName: 'Big Brother Org',
@@ -68,11 +70,11 @@ class Constants {
     Event(
         name: event3,
         description: event3,
-        date: "Oct",
+        date: "Nov",
         latitude: 51.48341910685281,
         longitude: -0.0034896543528867992,
-        dateStart: new DateTime(2022),
-        dateEnd: new DateTime(2022),
+        dateStart: DateTime.parse('2020-08-02'),
+        dateEnd: DateTime.parse('2020-11-02'),
         address: '632 Bella Street,\nMiracle Lane OH 33121',
         orgID: '2',
         orgName: 'SOSSI',
@@ -81,6 +83,39 @@ class Constants {
         eventID: '3',
         isOngoing: false,
         RSVP: true),
+    Event(
+        name: event4,
+        description: event4,
+        date: "April",
+        latitude: 51.48341910685281,
+        longitude: -0.0034896543528867992,
+        dateStart: DateTime.parse('2020-01-02'),
+        dateEnd: DateTime.parse('2020-05-02'),
+        address: '602 Google Drive,\Mark Lane AH 23211',
+        orgID: '3',
+        orgName: 'GOGL',
+        rsvpNum: 203,
+        rating: 1,
+        eventID: '4',
+        isOngoing: false,
+        RSVP: true),
+    Event(
+      name: event5,
+      description: event5,
+      date: "Nov",
+      latitude: 51.49220688011474,
+      longitude: -0.010424728835688258,
+      dateStart: DateTime.parse('2022-05-02'),
+      dateEnd: DateTime.parse('2023-11-02'),
+      address: '342 Madison Ave,\nJacksonville MD 11421',
+      orgID: '1',
+      orgName: 'Big Brother Org',
+      rsvpNum: 17,
+      rating: 3,
+      eventID: '5',
+      isOngoing: true,
+      RSVP: false,
+    ),
   ];
 
   static List<Medal> medals = [

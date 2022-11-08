@@ -1,5 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:sossi_app/components/double_value_pair.dart';
 import 'package:sossi_app/model/Event.dart';
 
@@ -21,9 +23,22 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final parameters = ModalRoute.of(context)!.settings.arguments as Event;
-    var ratingNum = parameters.rating.toString();
-
+    var outputFormat = DateFormat('MM/dd/yyyy');
     var dWidth = MediaQuery.of(context).size.width;
+
+    var ratingNum = parameters.rating.toString();
+    var currentPercent =
+        (DateTime.now().difference(parameters.dateStart).inDays) /
+            (parameters.dateEnd.difference(parameters.dateStart).inDays);
+
+    if (currentPercent > 1) {
+      currentPercent = 1;
+    } else if (currentPercent < 0) {
+      currentPercent = 0;
+    }
+
+    var percentLabel = (currentPercent * 100).round().toString();
+    percentLabel = '$percentLabel%';
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -32,7 +47,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
         children: [
           Container(
             // A fixed-height child.
-            height: 230.0,
+            height: 260.0,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor,
@@ -100,8 +115,8 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                             child: AutoSizeText(
                               parameters.name,
                               maxLines: 1,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 25),
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 25),
                             ),
                           ),
                           const SizedBox(
@@ -117,11 +132,39 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                                   fontSize: 12,
                                   fontStyle: FontStyle.italic),
                             ),
-                          )
+                          ),
                         ],
                       ),
-                    )
+                    ),
                   ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: LinearPercentIndicator(
+                      width: dWidth / 2.2,
+                      animation: true,
+                      animationDuration: 1000,
+                      backgroundColor: Colors.grey[600],
+                      lineHeight: 20.0,
+                      leading: AutoSizeText(
+                        outputFormat.format(parameters.dateStart),
+                        maxLines: 1,
+                        style:
+                            const TextStyle(fontSize: 8, color: Colors.white),
+                      ),
+                      trailing: AutoSizeText(
+                        outputFormat.format(parameters.dateEnd),
+                        maxLines: 1,
+                        style:
+                            const TextStyle(fontSize: 8, color: Colors.white),
+                      ),
+                      percent: currentPercent,
+                      center: AutoSizeText(percentLabel.toString(),
+                          maxLines: 1,
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Theme.of(context).primaryColor)),
+                      progressColor: Colors.white),
                 ),
               ],
             ),

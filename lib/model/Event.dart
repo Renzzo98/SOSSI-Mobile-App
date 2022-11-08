@@ -36,9 +36,7 @@ class Event {
   String eventID;
   List<SDG> sdgs;
   List<String> tags;
-//  String startTime; //string for now, but should be datetime
-//  String endTime; //string for now, but should be datetime
-  String date; //string for now, but should be datetime
+  String date;
   bool isOngoing;
 
   void setEventID(String eventID) {
@@ -121,8 +119,8 @@ class Event {
         description: json["description"],
         eventID: json["id"],
         address: json["address"],
-        dateStart: DateTime.now(),
-        dateEnd: DateTime.now(),
+        dateStart: DateTime.parse(json['startDate']),
+        dateEnd: DateTime.parse(json['endDate']),
         latitude: json["latitude"],
         longitude: json["longitude"],
         rating: json["rating"],
