@@ -41,12 +41,11 @@ class MyApp extends StatelessWidget {
           },
           themeMode: ThemeMode.light,
           theme: ThemeData(
-              primaryColor: Color.fromARGB(255, 31, 204, 193),
+              primaryColor: Colors.lightBlue[300],
               brightness: Brightness.light,
-              backgroundColor: Color.fromARGB(255, 31, 204, 193),
+              backgroundColor: Colors.lightBlue[300],
               colorScheme: ColorScheme.fromSwatch().copyWith(
-                  secondary: Color.fromARGB(255, 27, 190, 179),
-                  tertiary: Colors.white)),
+                  secondary: Colors.lightBlue[400], tertiary: Colors.white)),
           home: const MyHomePage(title: appTitle),
         ));
   }
@@ -275,8 +274,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Center(
         child: Padding(
             padding: EdgeInsets.all(20),
-            child: Column(children: [
-              const Text(
+            child: Column(children: const [
+              Text(
                   "Saving Our Sons & Sisters international (SOSSI) is a 501(c)3 nonprofit organization that transforms and improves the overall success of the youth, veterans, seniors, families, and communities. Our intergenerational approach creates an ecosystem focused on exposure, developing strategic partnerships between community, educators, industry professionals, nonprofits, and professionals committing services, time and resources to develop a STEM-ready workforce and access to opportunities."),
               //Image.asset("assets/sossialpha.png")
             ])));

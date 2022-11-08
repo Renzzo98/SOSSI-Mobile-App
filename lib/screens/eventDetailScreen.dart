@@ -107,12 +107,12 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                           const SizedBox(
                             height: 10,
                           ),
-                          const SizedBox(
+                          SizedBox(
                             width: 180,
                             child: AutoSizeText(
-                              "123 Streeting Ave,\nNew York, NY, 11202",
+                              parameters.address,
                               maxLines: 2,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
                                   fontStyle: FontStyle.italic),
