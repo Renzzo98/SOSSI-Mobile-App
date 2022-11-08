@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sossi_app/screens/createEventScreen.dart';
+import 'package:grouped_list/grouped_list.dart';
 import '../constants.dart';
 import '../model/Event.dart';
-
 import "package:sossi_app/constants.dart";
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -80,28 +80,45 @@ class _EventListState extends State<EventList> {
                 ),
               ))),
           Expanded(
-            child: ListView.builder(
-              itemCount: events.length,
-              padding: const EdgeInsets.all(12.0),
-              itemBuilder: (BuildContext c, int index) {
+            child: GroupedListView<dynamic, String>(
+              elements: events,
+              groupBy: (element) => element.dateStart.year.toString(),
+              groupComparator: (value1, value2) => value2.compareTo(value1),
+              itemComparator: (item1, item2) =>
+                  item1.dateStart.year.compareTo(item2.dateStart.year),
+              order: GroupedListOrder.DESC,
+              reverse: false,
+              useStickyGroupSeparators: false,
+              groupSeparatorBuilder: (String value) => Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Text(
+                  value,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor),
+                ),
+              ),
+              itemBuilder: (c, element) {
                 return GestureDetector(
                     onTap: () {
                       Navigator.of(context).pushNamed('/detailEvent',
                           arguments: Event(
-                              name: events[index].name,
-                              description: events[index].description,
-                              date: events[index].date,
-                              latitude: events[index].latitude,
-                              longitude: events[index].longitude,
-                              dateStart: events[index].dateStart,
-                              dateEnd: events[index].dateEnd,
-                              address: events[index].address,
-                              orgID: events[index].orgID,
-                              orgName: events[index].orgName,
-                              rsvpNum: events[index].rsvpNum,
-                              rating: events[index].rating,
-                              eventID: events[index].eventID,
-                              isOngoing: events[index].isOngoing));
+                              name: element.name,
+                              description: element.description,
+                              date: element.date,
+                              latitude: element.latitude,
+                              longitude: element.longitude,
+                              dateStart: element.dateStart,
+                              dateEnd: element.dateEnd,
+                              address: element.address,
+                              orgID: element.orgID,
+                              orgName: element.orgName,
+                              rsvpNum: element.rsvpNum,
+                              rating: element.rating,
+                              eventID: element.eventID,
+                              isOngoing: element.isOngoing));
                     },
                     child: Card(
                         child: Column(children: [
@@ -110,9 +127,9 @@ class _EventListState extends State<EventList> {
                           Icons.event_note,
                           size: 30,
                         ),
-                        title: Text(events[index].name),
-                        subtitle: Text(events[index].orgName),
-                        trailing: events[index].isOngoing
+                        title: Text(element.name),
+                        subtitle: Text(element.orgName),
+                        trailing: element.isOngoing
                             ? Icon(
                                 Icons.event_available,
                                 color: Theme.of(context).primaryColor,
