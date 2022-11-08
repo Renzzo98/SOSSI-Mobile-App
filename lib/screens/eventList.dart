@@ -55,49 +55,78 @@ class _EventListState extends State<EventList> {
     return new Scaffold(
       backgroundColor: Colors.grey[100],
       resizeToAvoidBottomInset: false,
-      body: ListView.builder(
-        itemCount: events.length,
-        padding: const EdgeInsets.all(12.0),
-        itemBuilder: (BuildContext c, int index) {
-          return GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushNamed('/detailEvent',
-                    arguments: Event(
-                        name: events[index].name,
-                        description: events[index].description,
-                        date: events[index].date,
-                        latitude: events[index].latitude,
-                        longitude: events[index].longitude,
-                        dateStart: events[index].dateStart,
-                        dateEnd: events[index].dateEnd,
-                        orgID: events[index].orgID,
-                        orgName: events[index].orgName,
-                        rsvpNum: events[index].rsvpNum,
-                        rating: events[index].rating,
-                        eventID: events[index].eventID,
-                        isOngoing: events[index].isOngoing));
-              },
-              child: Card(
-                  child: Column(children: [
-                ListTile(
-                  leading: const Icon(
-                    Icons.event_note,
-                    size: 30,
+      body: Column(
+        children: [
+          Container(
+              height: 80.0,
+              alignment: Alignment.bottomCenter,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondary,
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
-                  title: Text(events[index].name),
-                  subtitle: Text(events[index].orgName),
-                  trailing: events[index].isOngoing
-                      ? Icon(
-                          Icons.event_available,
-                          color: Theme.of(context).primaryColor,
-                        )
-                      : const Icon(
-                          Icons.event_busy,
-                          color: Colors.redAccent,
+                  borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20))),
+              child: Center(
+                  child: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  "Events".toUpperCase(),
+                  style: const TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+              ))),
+          Expanded(
+            child: ListView.builder(
+              itemCount: events.length,
+              padding: const EdgeInsets.all(12.0),
+              itemBuilder: (BuildContext c, int index) {
+                return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/detailEvent',
+                          arguments: Event(
+                              name: events[index].name,
+                              description: events[index].description,
+                              date: events[index].date,
+                              latitude: events[index].latitude,
+                              longitude: events[index].longitude,
+                              dateStart: events[index].dateStart,
+                              dateEnd: events[index].dateEnd,
+                              address: events[index].address,
+                              orgID: events[index].orgID,
+                              orgName: events[index].orgName,
+                              rsvpNum: events[index].rsvpNum,
+                              rating: events[index].rating,
+                              eventID: events[index].eventID,
+                              isOngoing: events[index].isOngoing));
+                    },
+                    child: Card(
+                        child: Column(children: [
+                      ListTile(
+                        leading: const Icon(
+                          Icons.event_note,
+                          size: 30,
                         ),
-                )
-              ])));
-        },
+                        title: Text(events[index].name),
+                        subtitle: Text(events[index].orgName),
+                        trailing: events[index].isOngoing
+                            ? Icon(
+                                Icons.event_available,
+                                color: Theme.of(context).primaryColor,
+                              )
+                            : const Icon(
+                                Icons.event_busy,
+                                color: Colors.redAccent,
+                              ),
+                      )
+                    ])));
+              },
+            ),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),

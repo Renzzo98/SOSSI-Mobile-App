@@ -1,5 +1,3 @@
-//looked at Event.java from demo
-
 import 'dart:convert';
 import 'SDG.dart';
 
@@ -7,6 +5,7 @@ class Event {
   Event(
       {required this.name,
       required this.description,
+      required this.address,
       required this.orgName,
       required this.orgID,
       required this.dateStart,
@@ -27,6 +26,7 @@ class Event {
   DateTime dateEnd;
   String name;
   String description;
+  String address;
   String orgName;
   String orgID;
   double latitude;
@@ -54,7 +54,9 @@ class Event {
     jsonDict["name"] = name;
     jsonDict["description"] = description;
     jsonDict["id"] = eventID;
-//    print(this.dateStart);
+    jsonDict["address"] = address;
+    jsonDict["orgID"] = orgID;
+    jsonDict["orgName"] = orgName;
     if (dateStart != null) {
       jsonDict["startDate"] = dateStart.toIso8601String();
     }
@@ -69,9 +71,8 @@ class Event {
         jsonDict["sdg"].add({"id": sdg_item.id});
       }
     }
-    json["orgName"] = orgName;
-    json["orgId"] = orgId;
     jsonDict["rsvpNum"] = rsvpNum;
+    jsonDict["isOngoing"] = isOngoing;
     jsonDict["rating"] = rating;
     return jsonDict;
   }
@@ -96,8 +97,12 @@ class Event {
     }
     latitude = rawData["latitude"];
     longitude = rawData["longitude"];
+    address = rawData["address"].toString();
+    orgID = rawData["orgID"].toString();
+    orgName = rawData["orgName"].toString();
     description = rawData["description"];
     rsvpNum = rawData["rsvpNum"];
+    isOngoing = rawData["isOngoing"];
     rating = rawData["rating"];
     tags = [];
     if (rawData.containsKey("tags")) {
@@ -115,24 +120,28 @@ class Event {
         name: json["name"],
         description: json["description"],
         eventID: json["id"],
+        address: json["address"],
         dateStart: DateTime.now(),
         dateEnd: DateTime.now(),
         latitude: json["latitude"],
         longitude: json["longitude"],
         rating: json["rating"],
         rsvpNum: json["rsvpNum"],
-        orgID: json["orgId"],
+        isOngoing: json["isOngoing"],
+        orgID: json["orgID"],
         orgName: json["orgName"]);
   }
 
   static Map<String, dynamic> toMap(Event event) => {
         'name': event.name,
         'description': event.description,
+        'address': event.address,
         'orgName': event.orgName,
-        'orgId': event.orgID,
+        'orgID': event.orgID,
         'dateStart': event.dateStart,
         'dateEnd': event.dateEnd,
         'rsvpNum': event.rsvpNum,
+        'isOngoing': event.isOngoing,
         'rating': event.rating
       };
 }

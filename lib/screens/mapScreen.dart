@@ -40,7 +40,7 @@ class _MapScreenState extends State<MapScreen> {
 
   Marker getMarker(Event event) {
     BitmapDescriptor iconType = event.RSVP
-        ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan)
+        ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure)
         : BitmapDescriptor.defaultMarker;
     return Marker(
         markerId: MarkerId(event.eventID),
@@ -57,6 +57,7 @@ class _MapScreenState extends State<MapScreen> {
                   longitude: event.longitude,
                   dateStart: event.dateStart,
                   dateEnd: event.dateEnd,
+                  address: event.address,
                   orgID: event.orgID,
                   orgName: event.orgName,
                   rsvpNum: event.rsvpNum,
