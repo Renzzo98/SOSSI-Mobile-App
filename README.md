@@ -1,6 +1,6 @@
 # sossi_app
 
-A new Flutter project.
+This is an flutter mobile app created for an hackathon. 
 
 ## Getting Started
 
